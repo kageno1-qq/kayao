@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="access/css/style.css">
+    <title>kayao</title>
+</head>
+<body id="backgroundTarget">
+    <!-- Снеговой канвас -->
+    <canvas id="snowCanvas"></canvas>
+
+    <!-- Кнопка смены темы -->
+    <button id="toggle_theme" aria-label="Переключить тему">
+        <img id="theme" src="" alt="Иконка темы" class="icon_button_24px">
+    </button>
+
+    <!-- Кнопка открытия настроек -->
+    <button id="settings" aria-label="Настройки">
+        <img id="settings_icon" src="" alt="Иконка настроек" class="icon_button_24px">
+    </button>
+
+    <!-- Кнопка Алисы -->
+    <a href="https://alice.yandex.ru/" target="_blank">
+        <button id="alice_button" aria-label="Алиса">
+            <img id="alice_icon" src="" alt="Алиса" class="icon_button_24px">
+        </button>
+    </a>
+
+    <!-- Виджет даты, времени и погоды -->
+    <div id="timeWeatherWidget">
+        <div id="timeDisplay"></div>
+        <div id="dateDisplay"></div>
+        <div id="weatherDisplay" style="cursor:pointer;"></div>
+    </div>
+
+    <!-- Модальное окно настроек -->
+    <div class="modal" style="display: none;">
+        <!-- Заголовок модального окна -->
+        <div class="modal_title">
+            <p class="modal_title_text">Вид новой вкладки</p>
+            <div class="modal_close" aria-label="Закрыть"></div>
+        </div>
+
+        <!-- Переключатель поисковой строки -->
+        <div class="modal_title">
+            <p class="model_text">Поисковая строка</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleSwitch">
+                <span class="slider round"></span>
+            </label>  
+        </div>
+
+        <!-- Переключатель часов -->
+        <div class="modal_title">
+            <p class="model_text">Часы</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleClock">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- Переключатель снега -->
+        <div class="modal_title">
+            <p class="model_text">Снег</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleSnow">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- Переключатель позиции элементов -->
+        <div class="modal_title">
+            <p class="model_text">Позиция элементов</p>
+            <div id="layoutSelector" class="layout-selector">
+                <button data-pos="top" class="layout-dot" title="Вверху"></button>
+                <button data-pos="center" class="layout-dot" title="По центру"></button>
+                <button data-pos="bottom" class="layout-dot" title="Внизу"></button>
+            </div>
+        </div>
+
+        <!-- Загрузка фонового изображения -->
+        <div class="modal_title">
+            <p class="model_text">Фон</p>
+            <div class="controls">
+                <input type="file" id="bgImageInput" accept="image/*" hidden>
+            </div>
+            <button id="model_selectimg" type="button">Загрузить свой фон</button>
+        </div>
+
+        <!-- Превью загруженного фона -->
+        <div id="preview" class="preview-thumb"></div>
+
+        <!-- Кнопка сброса фона -->
+        <button id="resetBackground" type="button">Удалить фон</button>
+
+        <!-- Цвет фона -->
+        <div class="m">
+            <p class="model_text">Цвет фона</p>
+            <button id="resetColorBtn" type="button" class="reset-btn">
+                <img id="undo" src="" alt="Undo" class="icon_button_16px">
+            </button>
+        </div>
+        <input type="color" id="colorPicker" value="#f4e1f0" />
+
+        <div class="m">
+            <p class="model_text">Цвет снежинок</p>
+            <button id="resetSnowColorBtn" type="button" class="reset-btn">
+                <img id="undo_snow" src="" alt="Undo" class="icon_button_16px">
+            </button>
+        </div>
+        <input type="color" id="snowColorPicker" value="#ffffff" />
+        
+    </div>
+
+    <!-- Контейнер с формой поиска -->
+    <div class="container" id="container">
+        <form class="search_form" action="https://www.google.com/search" method="GET" id="search_remove">
+            <input name="q" type="text" placeholder="Введите запрос или адрес" class="search_input" autocomplete="off">
+        </form>
+    </div>
+
+    <!-- Виджеты-ссылки -->
+    <div class="widget">
+        <a href="https://www.youtube.com/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="youtube" src="" alt="YouTube" class="icon_button_32px">
+            </button>
+        </a>
+        <a href="https://vk.com/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="vk" src="" alt="Vk" class="icon_button_32px">
+            </button>
+        </a>
+        <a href="https://www.kinopoisk.ru/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="kinopoisk" src="" alt="Kinipoisk" class="icon_button_32px">
+            </button>
+        </a>
+        <a href="https://chatgpt.com" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="chatgpt" src="" alt="ChatGPT" class="icon_button_32px">
+            </button>
+        </a>
+        <a href="https://34.doramalive.news/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="dorama" src="" alt="Дорамы" class="icon_button_32px">
+            </button>
+        </a>
+        <a href="https://translate.yandex.ru/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="translate" src="" alt="Переводчик" class="icon_button_32px">
+            </button>
+        </a>
+
+    </div>
+
+    <!-- Скрипты -->
+    <script src="access/js/script.js"></script>
+</body>
+</html>

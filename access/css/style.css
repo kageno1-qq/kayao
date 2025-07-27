@@ -1,0 +1,405 @@
+/* === Глобальные переменные === */
+:root {
+    --main_bg: #2e1a3d;
+    --search_input: #4f2a57;
+    --search_placeholder: #cda3cf65;
+    --text: #cda3cf;
+    --btn: #4f2a57;
+    --time_color: #000000;
+}
+
+.dark_theme:root {
+    --main_bg: #f4e1f0;
+    --search_input: #f1d1e8;
+    --search_placeholder: #4e334c50;
+    --text: #4e334c;
+    --btn: #f1d1e8;
+    --time_color: #ffffff;
+}
+.slider {
+    background-color: #ccc;
+}
+.dark_theme .slider {
+    background-color: #555;
+}
+
+/* === Основные параметры для всего документа === */
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--main_bg);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+}
+
+/* === Кнопка переключения темы === */
+#toggle_theme {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--btn);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* === Кнопка открытия настроек === */
+#settings {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--btn);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#alice_button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--btn);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* === Переключатели (слайдеры) === */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main_bg);
+    border-radius: 34px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2a8dff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* === Модальное окно настроек === */
+.modal {
+    width: 230px;
+    height: 570px;
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+    z-index: 999;
+    background: var(--btn);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === Заголовки и элементы модального окна === */
+.modal_title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* это блок цветов */
+.m {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal_title_text {
+    color: var(--text);
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.model_text {
+    color: var(--text);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Кнопка загрузки фонового изображения === */
+#model_selectimg {
+    border: none;
+    background: none;
+    color: #2a8dff;
+    cursor: pointer;
+}
+
+#model_selectimg:hover {
+    color: var(--text);
+}
+
+/* === Кнопка сброса фона === */
+#resetBackground {
+    width: 100%;
+    padding: 5px;
+    background: var(--main_bg);
+    color: var(--text);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* === Превью загруженного фона === */
+.preview-thumb {
+    width: 100%;
+    height: 100%;
+    background: var(--main_bg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+/* === Кнопка сброса цвета === */
+.reset-btn {
+    background-color: var(--main_bg);
+    color: var(--text);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#colorPicker, #snowColorPicker {
+    width: 100%;
+    border: 0;
+    background: 0;
+    margin: 5px 0 20px 0;
+
+}
+
+#colorPicker::-webkit-color-swatch, #snowColorPicker::-webkit-color-swatch {
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+}
+
+/* === Контейнер поиска и форма === */
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.search_form {
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_input {
+    width: 40%;
+    padding: 14px 18px;
+    background: var(--search_input);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+@media screen and (max-width: 980px) {
+    .search_input {
+        width: 80%;
+    }
+}
+
+.search_input::placeholder {
+    color: var(--search_placeholder);
+}
+
+/* === Иконки === */
+.icon_button_16px {
+    width: 16px;
+    height: 16px;
+}
+
+.icon_button_24px {
+    width: 24px;
+    height: 24px;
+}
+
+.icon_button_32px {
+    width: 32px;
+    height: 32px;
+}
+
+/* === Виджеты с кнопками-ссылками === */
+.widget {
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.widget_button {
+    margin: 5px;
+    padding: 5px;
+    background: var(--btn);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* === Анимация снега (канвас) === */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#timeWeatherWidget {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: var(--time_color);
+    font-family: sans-serif;
+    z-index: 999;
+}
+
+#timeDisplay {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#dateDisplay {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+#weatherDisplay {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.layout-top {
+    justify-content: flex-start;
+    padding-top: 60px;
+}
+
+.layout-center {
+    justify-content: center;
+}
+
+.layout-bottom {
+    justify-content: flex-end;
+    padding-bottom: 60px;
+}
+
+.time-centered {
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.layout-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.layout-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--text);
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+
+.layout-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--text);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
+}
+
+.layout-dot.selected::after {
+    transform: translate(-50%, -50%) scale(1);
+}
