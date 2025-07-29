@@ -390,4 +390,102 @@ function applyLayout(position) {
     }
 }
 
+const add_widget = document.getElementById('add_widget_btn');
+const modal1 = document.querySelector('.add_widget');
+const overlay = document.getElementById("overlay");
+const closeButton = document.getElementById("closeButton");
+
+// Открытие модального окна
+add_widget.addEventListener('click', () => {
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+    modal1.style.display = modal1.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Закрытие модального окна при нажатии кнопки закрытия
+closeButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    modal1.style.display = 'none';
+});
+
+const addWidgetBtn = document.getElementById('addBtn');
+const input = document.getElementById('widget_input');
+const widgetContainer = document.getElementById('widget_container');
+
+// Загружаем виджеты из localStorage при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadWidgets);
+
+// Функция для загрузки виджетов из localStorage
+function loadWidgets() {
+    const savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
+
+    savedWidgets.forEach(url => {
+        createWidget(url);
+    });
+}
+
+// Добавление виджета
+addWidgetBtn.addEventListener('click', () => {
+    const url = input.value.trim();
+    if (!url) return;
+
+    // Добавляем виджет на страницу
+    createWidget(url);
+
+    // Сохраняем виджеты в localStorage
+    saveWidget(url);
+
+    // Очистка поля ввода
+    input.value = '';
+    overlay.style.display = 'none';
+});
+
+// Функция создания виджета
+function createWidget(url) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'widget_wrapper';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close_btn';
+    closeBtn.textContent = '×';
+    closeBtn.title = 'Удалить';
+
+    closeBtn.addEventListener('click', () => {
+        wrapper.remove();
+        removeWidget(url); // Удаляем виджет из localStorage
+    });
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+
+    const button = document.createElement('button');
+    button.className = 'widget_button';
+    button.type = 'button';
+
+    const img = document.createElement('img');
+    img.src = `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`;
+    img.alt = url;
+    img.className = 'icon_button_32px';
+
+    button.appendChild(img);
+    a.appendChild(button);
+
+    wrapper.appendChild(closeBtn);
+    wrapper.appendChild(a);
+    widgetContainer.appendChild(wrapper);
+}
+
+// Функция для сохранения виджета в localStorage
+function saveWidget(url) {
+    const savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
+    savedWidgets.push(url);
+    localStorage.setItem('widgets', JSON.stringify(savedWidgets));
+}
+
+// Функция для удаления виджета из localStorage
+function removeWidget(url) {
+    let savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
+    savedWidgets = savedWidgets.filter(item => item !== url);
+    localStorage.setItem('widgets', JSON.stringify(savedWidgets));
+}
 
