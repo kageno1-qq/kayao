@@ -410,7 +410,7 @@ input:checked + .slider:before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: fit-content;
+    width: 200px;
     height: fit-content;
     background-color: var(--btn);
     border-radius: 10px;
@@ -420,24 +420,15 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
-#overlay {
-    position: fixed;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 #closeButton {
-    background-color: var(--main_bg);
-    color: var(--text);
-    border: none;
+    background: var(--main_bg);
     padding: 5px;
-    cursor: pointer;
     border-radius: 5px;
+    border: 2px solid transparent;
     display: flex;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 #widget_input {
@@ -460,6 +451,17 @@ input:checked + .slider:before {
     color: var(--text);
 }
 
+#addBtn {
+    width: 100%;
+    padding: 5px;
+    background: var(--main_bg);
+    color: var(--text);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0 0 0;
+}
+
 #add_widget_btn {
     width: 100%;
     padding: 5px;
@@ -480,8 +482,8 @@ input:checked + .slider:before {
     position: absolute;
     top: -6px;
     right: -6px;
-    background: red;
-    color: white;
+    background: var(--main_bg);
+    color: var(--text);
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -491,4 +493,6 @@ input:checked + .slider:before {
     text-align: center;
     cursor: pointer;
     z-index: 10;
+    border: 2px solid var(--btn);
 }
+
