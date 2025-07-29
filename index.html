@@ -111,21 +111,30 @@
         </div>
         <input type="color" id="snowColorPicker" value="#ffffff" />
 
-        <!-- Кнопка для открытия окна добавления виджета -->
-<button id="add_widget_btn">Добавить виджет</button>
-
-<!-- Затемняющий фон -->
-<div id="overlay">
-    <div class="add_widget">
+        <!-- Переключатель, убирающий крестики -->
         <div class="modal_title">
-            <p class="add_widget_title">Добавить виджет</p>
-            <button id="closeButton">×</button>
+            <p class="model_text">Убрать крестики</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleCloseBtn"> <!-- Изменен id -->
+                <span class="slider round"></span>
+            </label>
         </div>
-        <input type="text" id="widget_input" placeholder="Введите URL">
-        <button id="addBtn">Добавить</button>
-        
+
+    
+
+        <div class="add_widget">
+            <div class="modal_title">
+                <p class="add_widget_title">Добавить виджет</p>
+                <button id="closeButton">
+                    <img id="close" src="" class="icon_button_16px">
+                </button>
+            </div>
+            <button style="border: 0; background: var(--main_bg); color: var(--text); margin-bottom: 10px;">Выбор иконки (скоро)</button>
+            <input type="text" id="widget_input" placeholder="Введите URL">
+            <button id="addBtn">Добавить</button>
+        </div>
+
     </div>
-</div>
         
     </div>
 
