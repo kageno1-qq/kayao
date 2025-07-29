@@ -403,3 +403,92 @@ input:checked + .slider:before {
 .layout-dot.selected::after {
     transform: translate(-50%, -50%) scale(1);
 }
+
+.add_widget {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--btn);
+    border-radius: 10px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#closeButton {
+    background-color: var(--main_bg);
+    color: var(--text);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#widget_input {
+    width: 100%;
+    height: 20px;
+    background: var(--main_bg);
+    border: 0;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--text);
+    outline: none;
+}
+
+#widget_input::placeholder {
+    color: var(--search_placeholder);
+}
+
+.add_widget_title {
+    margin: 0;
+    color: var(--text);
+}
+
+#add_widget_btn {
+    width: 100%;
+    padding: 5px;
+    background: var(--main_bg);
+    color: var(--text);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.widget_wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 8px;
+}
+
+.close_btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+}
