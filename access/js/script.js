@@ -4,17 +4,18 @@ const root = document.documentElement;
 
 const icons = [
     { el: document.getElementById('theme'), light: 'access/icon/theme.dark.png', dark: 'access/icon/theme.light.png' },
-    { el: document.getElementById('close'), light: 'access/icon/close.dark.png', dark: 'access/icon/close.light.png' },
-    { el: document.getElementById('animego'), light: 'access/icon/animego.dark.png', dark: 'access/icon/animego.light.png' },
-    { el: document.getElementById('remanga'), light: 'access/icon/remanga.dark.png', dark: 'access/icon/remanga.light.png' },
+    { el: document.getElementById('close'), light: 'access/icon/close.light.png', dark: 'access/icon/close.dark.png' },
     { el: document.getElementById('youtube'), light: 'access/icon/youtube.dark.png', dark: 'access/icon/youtube.light.png' },
-    { el: document.getElementById('twitch'), light: 'access/icon/twitch.dark.png', dark: 'access/icon/twitch.light.png' },
-    { el: document.getElementById('github'), light: 'access/icon/github.dark.png', dark: 'access/icon/github.light.png' },
+    { el: document.getElementById('vk'), light: 'access/icon/vk.dark.png', dark: 'access/icon/vk.light.png' },
+    { el: document.getElementById('kinopoisk'), light: 'access/icon/kinopoisk.dark.png', dark: 'access/icon/kinopoisk.light.png' },
     { el: document.getElementById('chatgpt'), light: 'access/icon/chatgpt.dark.png', dark: 'access/icon/chatgpt.light.png' },
+    { el: document.getElementById('dorama'), light: 'access/icon/dorama.dark.png', dark: 'access/icon/dorama.light.png' },
+    { el: document.getElementById('translate'), light: 'access/icon/translate.dark.png', dark: 'access/icon/translate.light.png' },
+    { el: document.getElementById('pinterest'), light: 'access/icon/pinterest.dark.png', dark: 'access/icon/pinterest.light.png' },
     { el: document.getElementById('settings_icon'), light: 'access/icon/settings.dark.png', dark: 'access/icon/settings.light.png' },
-    { el: document.getElementById('undo'), light: 'access/icon/undo.dark.png', dark: 'access/icon/undo.light.png' },
-    { el: document.getElementById('undo_snow'), light: 'access/icon/undo.dark.png', dark: 'access/icon/undo.light.png' },
-
+    { el: document.getElementById('alice_icon'), light: 'access/icon/alice.dark.png', dark: 'access/icon/alice.light.png' },
+    { el: document.getElementById('undo'), light: 'access/icon/undo.light.png', dark: 'access/icon/undo.dark.png' },
+    { el: document.getElementById('undo_snow'), light: 'access/icon/undo.light.png', dark: 'access/icon/undo.dark.png' },
 ];
 
 // Функция для изменения темы и иконок
@@ -391,8 +392,6 @@ function applyLayout(position) {
     }
 }
 
-
-
 const add_widget_btn = document.getElementById('add_widget_btn');
 const add_widget = document.querySelector('.add_widget');
 const closeButton = document.getElementById("closeButton");
@@ -409,10 +408,8 @@ const addWidgetBtn = document.getElementById('addBtn');
 const input = document.getElementById('widget_input');
 const widgetContainer = document.getElementById('widget_container');
 
-// Загружаем виджеты из localStorage при загрузке страницы
 document.addEventListener('DOMContentLoaded', loadWidgets);
 
-// Функция для загрузки виджетов из localStorage
 function loadWidgets() {
     const savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
 
@@ -443,9 +440,6 @@ function createWidget(url) {
     closeBtn.className = 'close_btn';
     closeBtn.textContent = 'x';
 
-    // Убедимся, что крестик правильно добавляется
-    console.log('Создаем крестик', closeBtn);
-
     closeBtn.addEventListener('click', () => {
         wrapper.remove();
         removeWidget(url);
@@ -470,50 +464,47 @@ function createWidget(url) {
     wrapper.appendChild(a);
     widgetContainer.appendChild(wrapper);
 
-    // После создания виджета проверяем видимость крестиков
     toggleWidgetCloseBtnVisibility();
 }
 
-// Сохранение виджета в localStorage
 function saveWidget(url) {
     const savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
     savedWidgets.push(url);
     localStorage.setItem('widgets', JSON.stringify(savedWidgets));
 }
 
-// Удаление виджета из localStorage
 function removeWidget(url) {
     let savedWidgets = JSON.parse(localStorage.getItem('widgets')) || [];
     savedWidgets = savedWidgets.filter(item => item !== url);
     localStorage.setItem('widgets', JSON.stringify(savedWidgets));
 }
 
-// Скрытие или показ крестиков в зависимости от состояния переключателя
 function toggleWidgetCloseBtnVisibility() {
     const allCloseBtns = document.querySelectorAll('.close_btn');
     const toggleCloseBtn = document.getElementById('toggleCloseBtn');
 
     if (toggleCloseBtn.checked) {
         allCloseBtns.forEach(btn => {
-            btn.style.display = 'none'; // Скрываем крестики
+            btn.style.display = 'none';
         });
     } else {
         allCloseBtns.forEach(btn => {
-            btn.style.display = ''; // Показываем крестики
+            btn.style.display = '';
         });
     }
 }
 
-// Сохранение состояния переключателя в localStorage
 document.getElementById('toggleCloseBtn').addEventListener('change', () => {
     const isChecked = document.getElementById('toggleCloseBtn').checked;
-    localStorage.setItem('toggleCloseBtnState', isChecked); // Сохраняем состояние
+    localStorage.setItem('toggleCloseBtnState', isChecked);
     toggleWidgetCloseBtnVisibility();
 });
 
-// Восстановление состояния при загрузке страницы
 window.addEventListener('load', () => {
-    const savedState = localStorage.getItem('toggleCloseBtnState') === 'true'; // Получаем сохраненное состояние
-    document.getElementById('toggleCloseBtn').checked = savedState; // Применяем сохраненное состояние
-    toggleWidgetCloseBtnVisibility(); // Применяем видимость крестиков
+    const savedState = localStorage.getItem('toggleCloseBtnState') === 'true'; 
+    const toggleCloseBtn = document.getElementById('toggleCloseBtn');
+    toggleCloseBtn.checked = savedState || false;
+
+    toggleWidgetCloseBtnVisibility();
 });
+

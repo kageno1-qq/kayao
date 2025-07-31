@@ -16,91 +16,36 @@
     --btn: #f1d1e8;
     --time_color: #ffffff;
 }
-.slider {
-    background-color: #ccc;
-}
-.dark_theme .slider {
-    background-color: #555;
+
+.container, .search_form, .widget, .widget_button, #closeButton, body, html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* === Основные параметры для всего документа === */
 body, html {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     margin: 0;
     padding: 0;
     background: var(--main_bg);
     user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     font-family: 'Arial', sans-serif;
     background-size: cover;
     background-position: center;
 }
 
-/* === Кнопка переключения темы === */
-#toggle_theme {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: var(--btn);
-    padding: 5px;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* === Кнопка открытия настроек === */
-#settings {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: var(--btn);
-    padding: 5px;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-#alice_button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-    background: var(--btn);
-    padding: 5px;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* === Переключатели (слайдеры) === */
+/* === Переключатели === */
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 40px; height: 20px;
 }
 
 .slider {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: var(--main_bg);
     border-radius: 34px;
     transition: 0.4s;
@@ -110,8 +55,7 @@ body, html {
 .slider:before {
     position: absolute;
     content: "";
-    height: 12px;
-    width: 12px;
+    height: 12px; width: 12px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -119,18 +63,30 @@ body, html {
     transition: 0.4s;
 }
 
-input:checked + .slider {
-    background-color: #2a8dff;
+.slider { background-color: #ccc; }
+
+input:checked + .slider { background-color: #2a8dff; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+#toggle_theme, #settings {
+    position: absolute;
+    background: var(--btn);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
 }
 
-input:checked + .slider:before {
-    transform: translateX(20px);
-}
+#toggle_theme { top: 20px; right: 20px; }
+#settings { bottom: 20px; right: 20px; }
 
 /* === Модальное окно настроек === */
 .modal {
-    width: 230px;
-    height: 570px;
+    width: 230px; height: 570px;
     position: absolute;
     bottom: 70px;
     right: 20px;
@@ -145,35 +101,25 @@ input:checked + .slider:before {
 }
 
 /* === Заголовки и элементы модального окна === */
-.modal_title {
+.modal_title, .m {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.modal_title {
     margin-bottom: 20px;
 }
 
-/* это блок цветов */
-.m {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal_title_text {
+.modal_title_text, .model_text {
     color: var(--text);
-    font-size: 16px;
     margin: 0;
     padding: 0;
 }
 
-.model_text {
-    color: var(--text);
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-}
+.modal_title_text { font-size: 16px; }
+.model_text { font-size: 14px; }
 
 /* === Кнопка загрузки фонового изображения === */
 #model_selectimg {
@@ -183,9 +129,7 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-#model_selectimg:hover {
-    color: var(--text);
-}
+#model_selectimg:hover { color: var(--text); }
 
 /* === Кнопка сброса фона === */
 #resetBackground {
@@ -225,8 +169,8 @@ input:checked + .slider:before {
 
 #colorPicker, #snowColorPicker {
     width: 100%;
-    border: 0;
-    background: 0;
+    border: none;
+    background: none;
     margin: 5px 0 20px 0;
 
 }
@@ -240,18 +184,12 @@ input:checked + .slider:before {
 /* === Контейнер поиска и форма === */
 .container {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
 }
 
 .search_form {
     width: 100%;
     margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .search_input {
@@ -271,33 +209,17 @@ input:checked + .slider:before {
     }
 }
 
-.search_input::placeholder {
-    color: var(--search_placeholder);
-}
+.search_input::placeholder { color: var(--search_placeholder); }
 
 /* === Иконки === */
-.icon_button_16px {
-    width: 16px;
-    height: 16px;
-}
-
-.icon_button_24px {
-    width: 24px;
-    height: 24px;
-}
-
-.icon_button_32px {
-    width: 32px;
-    height: 32px;
-}
+.icon_button_16px { width: 16px; height: 16px; }
+.icon_button_24px { width: 24px; height: 24px; }
+.icon_button_32px { width: 32px; height: 32px; }
 
 /* === Виджеты с кнопками-ссылками === */
 .widget {
     width: 100%;
     margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
 }
 
@@ -307,17 +229,13 @@ input:checked + .slider:before {
     background: var(--btn);
     border: 2px solid transparent;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
 }
 
-/* === Анимация снега (канвас) === */
+/* === Анимация снега === */
 #snowCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -326,8 +244,7 @@ input:checked + .slider:before {
 
 #timeWeatherWidget {
     position: absolute;
-    top: 25%;
-    left: 50%;
+    top: 25%; left: 50%;
     transform: translate(-50%, -50%);
     padding: 5px 20px;
     border-radius: 10px;
@@ -390,8 +307,7 @@ input:checked + .slider:before {
 .layout-dot::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     width: 8px;
     height: 8px;
     background-color: var(--text);
@@ -407,8 +323,7 @@ input:checked + .slider:before {
 .add_widget {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: fit-content;
@@ -421,14 +336,7 @@ input:checked + .slider:before {
 }
 
 #closeButton {
-    background: var(--main_bg);
     padding: 5px;
-    border-radius: 5px;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
 }
 
 #widget_input {
@@ -451,48 +359,54 @@ input:checked + .slider:before {
     color: var(--text);
 }
 
-#addBtn {
-    width: 100%;
-    padding: 5px;
+#addBtn, #add_widget_btn, .close_btn, #closeButton {
     background: var(--main_bg);
     color: var(--text);
     border: 2px solid transparent;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#addBtn {
+    width: 100%;
+    padding: 5px;
     margin: 10px 0 0 0;
 }
 
 #add_widget_btn {
     width: 100%;
     padding: 5px;
-    background: var(--main_bg);
-    color: var(--text);
-    border: 2px solid transparent;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .widget_wrapper {
     position: relative;
     display: inline-block;
-    margin: 8px;
 }
 
 .close_btn {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    background: var(--main_bg);
-    color: var(--text);
+    top: -6px; right: -6px;
     font-weight: bold;
-    font-size: 14px;
     line-height: 16px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
     text-align: center;
-    cursor: pointer;
     z-index: 10;
     border: 2px solid var(--btn);
 }
 
+#alice_button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--btn);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

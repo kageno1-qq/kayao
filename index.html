@@ -110,17 +110,20 @@
             </button>
         </div>
         <input type="color" id="snowColorPicker" value="#ffffff" />
+        
+        <!-- Добавление виджета -->
+        <div class="modal_title">
+            <button id="add_widget_btn">Добавить виджет</button>
+        </div>
 
-        <!-- Переключатель, убирающий крестики -->
+        <!-- Убрать крестики -->
         <div class="modal_title">
             <p class="model_text">Убрать крестики</p>
             <label class="switch">
-                <input type="checkbox" id="toggleCloseBtn"> <!-- Изменен id -->
+                <input type="checkbox" id="toggleCloseBtn">
                 <span class="slider round"></span>
             </label>
         </div>
-
-    
 
         <div class="add_widget">
             <div class="modal_title">
@@ -129,13 +132,9 @@
                     <img id="close" src="" class="icon_button_16px">
                 </button>
             </div>
-            <button style="border: 0; background: var(--main_bg); color: var(--text); margin-bottom: 10px;">Выбор иконки (скоро)</button>
             <input type="text" id="widget_input" placeholder="Введите URL">
             <button id="addBtn">Добавить</button>
         </div>
-
-    </div>
-        
     </div>
 
     <!-- Контейнер с формой поиска -->
@@ -146,7 +145,7 @@
     </div>
 
     <!-- Виджеты-ссылки -->
-    <div class="widget"   id="widget_container">
+    <div class="widget" id="widget_container">
         <a href="https://www.youtube.com/" target="_blank">
             <button class="widget_button" type="button">
                 <img id="youtube" src="" alt="YouTube" class="icon_button_32px">
@@ -177,7 +176,11 @@
                 <img id="translate" src="" alt="Переводчик" class="icon_button_32px">
             </button>
         </a>
-
+        <a href="https://ru.pinterest.com/" target="_blank">
+            <button class="widget_button" type="button">
+                <img id="pinterest" src="" alt="Pinterest" class="icon_button_32px">
+            </button>
+        </a>
     </div>
 
     <!-- Скрипты -->
